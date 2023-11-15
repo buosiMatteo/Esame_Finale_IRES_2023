@@ -24,8 +24,6 @@ public class SalaCinematograficaDTO implements Dto {
 
   private String numeroSpettatori;
 
-  private String idFilm;
-
   private String film;
 
   private String numeroSala;
@@ -36,7 +34,6 @@ public class SalaCinematograficaDTO implements Dto {
   public SalaCinematografica toModel() {
     return SalaCinematografica.builder()
         .id(stringToLong(id))
-        .idFilm(Film.builder().build())
         .film(film)
         .numeroSala(stringToLong(numeroSala))
         .numeroSpettatori(stringToLong(numeroSpettatori))

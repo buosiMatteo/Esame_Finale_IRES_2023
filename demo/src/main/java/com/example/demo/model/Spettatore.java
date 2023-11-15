@@ -39,10 +39,8 @@ public class Spettatore implements Model {
   @Column(name = "data_nascita")
   private LocalDateTime dataNascita;
 
-  @ManyToOne(fetch = FetchType.EAGER)
-  @MapsId("idBiglietto")
-  @JoinColumn(name = "id_biglietto")
-  private Biglietto idBiglietto;
+  @Column(name = "biglietto")
+  private Long biglietto;
 
   @Column(name = "maggiorenne")
   private Boolean maggiorenne;
@@ -62,7 +60,7 @@ public class Spettatore implements Model {
         .nome(nome)
         .cognome(cognome)
         .dataNascita(localDateTimeToString(dataNascita))
-        .idBiglietto(numberToString(idBiglietto.getId()))
+        .biglietto(numberToString(biglietto))
         .maggiorenne(booleanToString(maggiorenne))
         .etaSpettatore(numberToString(etaSpettatore))
         .deleted(booleanToString(deleted))

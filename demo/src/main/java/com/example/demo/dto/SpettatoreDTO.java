@@ -27,7 +27,7 @@ public class SpettatoreDTO implements Dto {
 
   private String dataNascita;
 
-  private String idBiglietto;
+  private String biglietto;
 
   private String maggiorenne;
 
@@ -42,7 +42,7 @@ public class SpettatoreDTO implements Dto {
         .nome(nome)
         .cognome(cognome)
         .dataNascita(stringToLocalDateTime(dataNascita))
-        .idBiglietto(Biglietto.builder().id(stringToLong(idBiglietto)).build())
+        .biglietto(stringToLong(biglietto))
         .maggiorenne(stringToBoolean(maggiorenne))
         .etaSpettatore(stringToInteger(etaSpettatore))
         .deleted(stringToBoolean(deleted))

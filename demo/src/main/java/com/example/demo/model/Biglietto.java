@@ -9,6 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static com.example.demo.utility.DataConversionUtils.*;
 
@@ -45,5 +46,13 @@ public class Biglietto implements Model {
         .prezzo(numberToString(prezzo))
         .deleted(booleanToString(deleted))
         .build();
+  }
+
+  public Double sconto(LocalDateTime dataNascita) {
+    if (LocalDateTime.now().getYear() - dataNascita.getYear() < 5)
+      return prezzo / 2.0;
+    if (LocalDateTime.now().getYear() - dataNascita.getYear() > 70)
+      return prezzo*9.0/10.0;
+    return prezzo;
   }
 }

@@ -24,7 +24,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="data_nascita" type="DATETIME"/>
-            <column name="id_biglietto" type="BIGINT(20)">
+            <column name="biglietto" type="BIGINT(20)">
                 <constraints nullable="false"/>
             </column>
             <column name="maggiorenne" type="BOOLEAN"/>

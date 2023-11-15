@@ -4,7 +4,9 @@ import com.example.demo.dto.BigliettoDTO;
 import com.example.demo.exception.IdMustBeNullException;
 import com.example.demo.exception.IdMustNotBeNullException;
 import com.example.demo.model.Biglietto;
+import com.example.demo.model.Spettatore;
 import com.example.demo.service.BigliettoService;
+import com.example.demo.service.SpettatoreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
@@ -13,12 +15,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/tickets")
 @SecurityRequirement(name = "authentication")
 public class BigliettoController {
   BigliettoService bigliettoService;
+
+  SpettatoreService spettatoreService;
 
   @GetMapping("/v1")
   @Operation(description = """
@@ -29,24 +34,22 @@ public class BigliettoController {
   }
 
   @PostMapping("/v1")
-  public BigliettoDTO saveTicket (@RequestBody BigliettoDTO bigliettoDTO) {
-    try{
+  public BigliettoDTO saveTicket(@RequestBody BigliettoDTO bigliettoDTO) {
+    try {
       Biglietto customer = bigliettoDTO.toModel();
       return bigliettoService.insert(customer).toDto();
-    }
-    catch(IdMustBeNullException e) {
+    } catch (IdMustBeNullException e) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, e.getMessage());
     }
   }
 
   @PutMapping("/v1")
-  public BigliettoDTO updateTicket (@RequestBody BigliettoDTO bigliettoDTO){
-    try{
+  public BigliettoDTO updateTicket(@RequestBody BigliettoDTO bigliettoDTO) {
+    try {
       Biglietto customer = bigliettoDTO.toModel();
       return bigliettoService.update(customer).toDto();
-    }
-    catch(IdMustNotBeNullException e) {
+    } catch (IdMustNotBeNullException e) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, e.getMessage());
     }
@@ -60,6 +63,14 @@ public class BigliettoController {
   @GetMapping("/v1/{id}")
   public BigliettoDTO getTicketById(@PathVariable("id") Long idBiglietto) {
     return bigliettoService.findById(idBiglietto).toDto();
+  }
+
+  @PutMapping("/v1/sconto")
+  public BigliettoDTO getSconto(@RequestParam Long idBiglietto, @RequestParam Long idSpettatore) {
+    Biglietto biglietto = getTicketById(idBiglietto).toModel();
+    Spettatore spettatore = spettatoreService.findById(idSpettatore);
+    biglietto.setPrezzo(biglietto.sconto(spettatore.getDataNascita()));
+    return biglietto.toDto();
   }
 
 }
