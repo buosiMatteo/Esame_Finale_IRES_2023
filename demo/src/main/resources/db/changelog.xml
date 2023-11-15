@@ -7,6 +7,7 @@
     <include file="db/changelogs/2023-11-15-02-film-create.xml"/>
     <include file="db/changelogs/2023-11-15-03-sala_cinematografica-create.xml"/>
     <include file="db/changelogs/2023-11-15-04-biglietto-create.xml"/>
+    <include file="db/changelogs/2023-11-15-05-spettatore-create.xml"/>
 
 
 </databaseChangeLog>
