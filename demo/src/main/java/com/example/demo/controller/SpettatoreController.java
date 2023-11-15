@@ -69,7 +69,7 @@ public class SpettatoreController {
     Spettatore spettatore = getWatcherById(idSpettatore).toModel();
     return spettatore.isMaggiorenne(spettatore.getDataNascita());
   }
-}
+
 
   @GetMapping("/v1/eta-spettatore")
   public Integer etaSpettatore(@RequestParam Long idSpettatore){
