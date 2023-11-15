@@ -36,6 +36,8 @@ public class Spettatore implements Model {
   @Column(name = "data_nascita")
   LocalDateTime dataNascita;
 
+  @OneToOne
+  @MapsId("biglietto")
   @Column(name = "biglietto")
   Long biglietto;
 

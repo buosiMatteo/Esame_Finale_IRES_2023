@@ -25,6 +25,11 @@
             </column>
             <column name="deleted" type="BOOLEAN"/>
         </createTable>
+        
+        <addForeignKeyConstraint baseTableName="biglietto" baseColumnNames="numero_sala"
+                                 constraintName="FK_SALA_ON_BIGLIETTO"
+                                 referencedTableName="sala_cinematografica"
+                                 referencedColumnNames="id"
         <rollback>
             <dropTable tableName="biglietto"/>
         </rollback>

@@ -30,6 +30,10 @@ public class SalaCinematografica implements Model {
   @Column(name = "numero_spettatori")
   Long numeroSpettatori;
 
+  @ManyToOne
+  @MapsId("id_film")
+  Long idFilm;
+
   @Column(name = "film")
   String film;
 
@@ -47,6 +51,7 @@ public class SalaCinematografica implements Model {
     return SalaCinematograficaDTO.builder()
         .id(numberToString(id))
         .numeroSpettatori(numberToString(numeroSpettatori))
+        .idFilm(numberToString(idFilm))
         .film(film)
         .numeroSala(numberToString(numeroSala))
         .deleted(booleanToString(deleted))

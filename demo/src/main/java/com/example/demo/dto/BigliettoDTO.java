@@ -4,6 +4,9 @@ import com.example.demo.dto.archetype.Dto;
 import com.example.demo.dto.archetype.Model;
 import com.example.demo.model.Biglietto;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +23,8 @@ import static com.example.demo.utility.DataConversionUtils.*;
 public class BigliettoDTO implements Dto {
   String id;
 
+  @OneToOne
+  @MapsId("numero_sala")
   String numeroSala;
 
   String prezzo;

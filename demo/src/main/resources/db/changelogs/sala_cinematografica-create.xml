@@ -20,6 +20,9 @@
             <column name="numero_spettatori" type="BIGINT(20)">
                 <constraints nullable="false"/>
             </column>
+            <column name="id_film" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
             <column name="film" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -27,6 +30,10 @@
             <column name="deleted" type="BOOLEAN"/>
         </createTable>
 
+        <addForeignKeyConstraint baseTableName="sala_cinematografica" baseColumnNames="id_film"
+                                 constraintName="FK_FILM_ON_SALA"
+                                 referencedTableName="film"
+                                 referencedColumnNames="id"
 
         <rollback>
             <dropTable tableName="sala_cinematografica"/>

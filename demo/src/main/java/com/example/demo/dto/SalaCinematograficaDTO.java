@@ -3,6 +3,9 @@ package com.example.demo.dto;
 import com.example.demo.dto.archetype.Dto;
 import com.example.demo.dto.archetype.Model;
 import com.example.demo.model.SalaCinematografica;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +23,8 @@ public class SalaCinematograficaDTO implements Dto {
 
   String numeroSpettatori;
 
+  String idFilm;
+
   String film;
 
   String numeroSala;
@@ -30,6 +35,7 @@ public class SalaCinematograficaDTO implements Dto {
   public SalaCinematografica toModel() {
     return SalaCinematografica.builder()
         .id(stringToLong(id))
+        .idFilm(stringToLong(idFilm))
         .film(film)
         .numeroSala(stringToLong(numeroSala))
         .deleted(stringToBoolean(deleted))
