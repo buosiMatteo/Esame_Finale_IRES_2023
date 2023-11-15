@@ -33,7 +33,7 @@
         <addForeignKeyConstraint baseTableName="sala_cinematografica" baseColumnNames="id_film"
                                  constraintName="FK_FILM_ON_SALA"
                                  referencedTableName="film"
-                                 referencedColumnNames="id"
+                                 referencedColumnNames="id"/>
 
         <rollback>
             <dropTable tableName="sala_cinematografica"/>

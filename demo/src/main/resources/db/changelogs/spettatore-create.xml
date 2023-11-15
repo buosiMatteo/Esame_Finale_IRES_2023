@@ -35,7 +35,7 @@
         <addForeignKeyConstraint baseTableName="spettatore" baseColumnNames="biglietto"
                                  constraintName="FK_BIGLIETTO_ON_SPETTATORE"
                                  referencedTableName="biglietto"
-                                 referencedColumnNames="id"
+                                 referencedColumnNames="id"/>
         <rollback>
             <dropTable tableName="spettatore"/>
         </rollback>
