@@ -1,7 +1,6 @@
 package com.example.demo.security;
 
 import com.example.demo.enums.UserRole;
-import it.euris.academy.webservicerest.data.enums.UserRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -45,9 +44,11 @@ public class SecurityConf {
         .authorizeHttpRequests((authorize) -> authorize
             .requestMatchers(whiteList.getUrls()).permitAll()
             .requestMatchers(HttpMethod.GET,"/").permitAll()
-            .requestMatchers(HttpMethod.GET,"/customers/**").permitAll()
-            .requestMatchers(HttpMethod.GET,"/orders/**").permitAll()
-            .requestMatchers(HttpMethod.GET,"/products/**").permitAll()
+            .requestMatchers(HttpMethod.GET,"/cinemas/**").permitAll()
+            .requestMatchers(HttpMethod.GET,"/rooms/**").permitAll()
+            .requestMatchers(HttpMethod.GET,"/watchers/**").permitAll()
+            .requestMatchers(HttpMethod.GET,"/tickets/**").permitAll()
+            .requestMatchers(HttpMethod.GET,"/films/**").permitAll()
             .requestMatchers("/customers/**").hasRole(UserRole.MANAGER.toString())
             .requestMatchers("/orders/**").hasAnyRole(
                 UserRole.MANAGER.toString(),
