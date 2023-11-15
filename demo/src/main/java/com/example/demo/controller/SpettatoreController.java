@@ -63,4 +63,17 @@ public class SpettatoreController {
   public SpettatoreDTO getWatcherById(@PathVariable("id") Long idSpettatore) {
     return spettatoreService.findById(idSpettatore).toDto();
   }
+
+  @GetMapping("/v1/maggiorenne")
+  public Boolean isMaggiorenne(@RequestParam Long idSpettatore){
+    Spettatore spettatore = getWatcherById(idSpettatore).toModel();
+    return spettatore.isMaggiorenne(spettatore.getDataNascita());
+  }
+}
+
+  @GetMapping("/v1/eta-spettatore")
+  public Integer etaSpettatore(@RequestParam Long idSpettatore){
+    Spettatore spettatore = getWatcherById(idSpettatore).toModel();
+    return spettatore.etaSpettatore(spettatore.getDataNascita());
+  }
 }
