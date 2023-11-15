@@ -30,15 +30,11 @@ public class SalaCinematografica implements Model {
   @Column(name = "numero_spettatori")
   Long numeroSpettatori;
 
-  @ManyToOne
-  @MapsId("id_film")
   Long idFilm;
 
   @Column(name = "film")
   String film;
 
-  @OneToMany
-  @MapsId("numero_sala")
   @Column(name = "numero_sala")
   Long numeroSala;
 

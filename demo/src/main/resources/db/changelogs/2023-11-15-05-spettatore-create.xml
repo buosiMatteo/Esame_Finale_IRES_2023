@@ -32,10 +32,6 @@
             <column name="deleted" type="BOOLEAN"/>
         </createTable>
 
-        <addForeignKeyConstraint baseTableName="spettatore" baseColumnNames="biglietto"
-                                 constraintName="FK_BIGLIETTO_ON_SPETTATORE"
-                                 referencedTableName="biglietto"
-                                 referencedColumnNames="id"/>
         <rollback>
             <dropTable tableName="spettatore"/>
         </rollback>

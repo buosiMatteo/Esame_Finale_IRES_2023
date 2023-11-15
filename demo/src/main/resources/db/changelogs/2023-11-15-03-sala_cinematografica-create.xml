@@ -6,32 +6,32 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet author="Matteo Buosi" id="2023-11-15-05-biglietto-create">
+    <changeSet author="Matteo Buosi" id="2023-11-15-02-sala_cinematografica-create">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="biglietto"/>
+                <tableExists tableName="sala_cinematografica"/>
             </not>
         </preConditions>
-        <comment>biglietto create</comment>
-        <createTable tableName="biglietto">
+        <comment>sala_cinematografica create</comment>
+        <createTable tableName="sala_cinematografica">
             <column name="id" type="BIGINT(20)" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="numero_sala" type="BIGINT(20)">
+            <column name="numero_spettatori" type="BIGINT(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="prezzo" type="DECIMAL(8,2)">
+            <column name="id_film" type="BIGINT(20)">
                 <constraints nullable="false"/>
             </column>
+            <column name="film" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="numero_sala" type="VARCHAR(255)"/>
             <column name="deleted" type="BOOLEAN"/>
         </createTable>
-        
-        <addForeignKeyConstraint baseTableName="biglietto" baseColumnNames="numero_sala"
-                                 constraintName="FK_SALA_ON_BIGLIETTO"
-                                 referencedTableName="sala_cinematografica"
-                                 referencedColumnNames="id"/>
+
         <rollback>
-            <dropTable tableName="biglietto"/>
+            <dropTable tableName="sala_cinematografica"/>
         </rollback>
     </changeSet>
 

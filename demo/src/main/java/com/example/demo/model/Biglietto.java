@@ -28,8 +28,6 @@ public class Biglietto implements Model {
   @Column(name = "id")
   Long id;
 
-  @ManyToOne
-  @MapsId("numero_sala")
   @Column(name = "numero_sala")
   Long numeroSala;
 

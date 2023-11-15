@@ -23,6 +23,8 @@ import static com.example.demo.utility.DataConversionUtils.*;
 @SQLDelete(sql = "UPDATE contact SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
 public class Spettatore implements Model {
+  private int year = LocalDateTime.now().getYear();
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -37,18 +39,15 @@ public class Spettatore implements Model {
   @Column(name = "data_nascita")
   LocalDateTime dataNascita;
 
-  @OneToOne
-  @MapsId("biglietto")
   @Column(name = "biglietto")
   Long biglietto;
 
   @Column(name = "maggiorenne")
- // @Builder.Default
-  Boolean maggiorenne; //= ((LocalDateTime.now().getYear()) - dataNascita.getYear() >= 18) ? true : false;
+  Boolean maggiorenne;
+
 
   @Column(name = "eta_spettatore")
-  //@Builder.Default
-  Integer etaSpettatore; //= LocalDateTime.now().getYear() - dataNascita.getYear();
+  Integer etaSpettatore;
 
   @Column(name = "deleted")
   @Builder.Default
@@ -67,4 +66,15 @@ public class Spettatore implements Model {
         .deleted(booleanToString(deleted))
         .build();
   }
+  public Boolean isMaggiorenne(LocalDateTime dataNascita){
+    Boolean response = LocalDateTime.now().getYear() - dataNascita.getYear() >= 18;
+    return response;
+  }
+
+  public Integer etaSpettatore(LocalDateTime dataNascita){
+    Integer response = LocalDateTime.now().getYear() - dataNascita.getYear();
+    return response;
+  }
+
 }
+
