@@ -1,9 +1,15 @@
 package com.example.demo.model;
 
+import com.example.demo.dto.CinemaDTO;
+import com.example.demo.dto.archetype.Dto;
+import com.example.demo.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import static com.example.demo.utility.DataConversionUtils.booleanToString;
+import static com.example.demo.utility.DataConversionUtils.numberToString;
 
 @Builder
 @Getter
@@ -14,7 +20,7 @@ import org.hibernate.annotations.Where;
 @Table(name = "contact")
 @SQLDelete(sql = "UPDATE contact SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
-public class Cinema {
+public class Cinema implements Model {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +48,17 @@ public class Cinema {
   @Column(name = "deleted")
   @Builder.Default
   Boolean deleted = false;
+
+  @Override
+  public CinemaDTO toDto() {
+    return CinemaDTO.builder()
+        .id(numberToString(id))
+        .nomeCinema(nomeCinema)
+        .numeroSale(numberToString(numeroSale))
+        .address(address)
+        .city(city)
+        .email(email)
+        .deleted(booleanToString(deleted))
+        .build();
+  }
 }

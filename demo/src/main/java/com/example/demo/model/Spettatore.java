@@ -1,11 +1,16 @@
 package com.example.demo.model;
 
+import com.example.demo.dto.SpettatoreDTO;
+import com.example.demo.dto.archetype.Dto;
+import com.example.demo.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
+
+import static com.example.demo.utility.DataConversionUtils.*;
 
 @Builder
 @Getter
@@ -16,7 +21,7 @@ import java.time.LocalDateTime;
 @Table(name = "contact")
 @SQLDelete(sql = "UPDATE contact SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
-public class Spettatore {
+public class Spettatore implements Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -45,4 +50,18 @@ public class Spettatore {
   @Column(name = "deleted")
   @Builder.Default
   Boolean deleted = false;
+
+  @Override
+  public SpettatoreDTO toDto() {
+    return SpettatoreDTO.builder()
+        .id(numberToString(id))
+        .nome(nome)
+        .cognome(cognome)
+        .dataNascita(localDateTimeToString(dataNascita))
+        .biglietto(numberToString(biglietto))
+        .maggiorenne(booleanToString(maggiorenne))
+        .etaSpettatore(numberToString(etaSpettatore))
+        .deleted(booleanToString(deleted))
+        .build();
+  }
 }
