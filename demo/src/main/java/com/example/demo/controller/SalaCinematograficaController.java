@@ -3,11 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.dto.SalaCinematograficaDTO;
 import com.example.demo.exception.IdMustBeNullException;
 import com.example.demo.exception.IdMustNotBeNullException;
+import com.example.demo.exception.SalaAlCompleto;
 import com.example.demo.model.SalaCinematografica;
 import com.example.demo.service.SalaCinematograficaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -32,23 +34,21 @@ public class SalaCinematograficaController {
 
   @PostMapping("/v1")
   public SalaCinematograficaDTO saveRoom(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO) {
-    try{
+    try {
       SalaCinematografica salaCinematografica = salaCinematograficaDTO.toModel();
       return salaCinematograficaService.insert(salaCinematografica).toDto();
-    }
-    catch(IdMustBeNullException e) {
+    } catch (IdMustBeNullException e) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, e.getMessage());
     }
   }
 
   @PutMapping("/v1")
-  public SalaCinematograficaDTO updateRoom(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO){
-    try{
+  public SalaCinematograficaDTO updateRoom(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO) {
+    try {
       SalaCinematografica salaCinematografica = salaCinematograficaDTO.toModel();
       return salaCinematograficaService.update(salaCinematografica).toDto();
-    }
-    catch(IdMustNotBeNullException e) {
+    } catch (IdMustNotBeNullException e) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, e.getMessage());
     }
@@ -62,5 +62,22 @@ public class SalaCinematograficaController {
   @GetMapping("/v1/{id}")
   public SalaCinematograficaDTO getRoomById(@PathVariable("id") Long idSala) {
     return salaCinematograficaService.findById(idSala).toDto();
+  }
+
+  @PutMapping("/v1/empty-room")
+  public SalaCinematograficaDTO emptyRoom(@RequestBody SalaCinematografica salaCinematografica) {
+    salaCinematografica.setNumeroSpettatori(0L);
+    return salaCinematografica.toDto();
+  }
+
+  @PutMapping("/v1/empty-room")
+  @SneakyThrows
+  public SalaCinematograficaDTO addPerson(@RequestBody SalaCinematografica salaCinematografica) {
+    if (salaCinematografica.getNumeroSpettatori() < SalaCinematografica.NUMERO_MAX_SPETTATORI) {
+      salaCinematografica.setNumeroSpettatori(salaCinematografica.getNumeroSpettatori() + 1L);
+    } else {
+      throw new SalaAlCompleto();
+    }
+    return salaCinematografica.toDto();
   }
 }

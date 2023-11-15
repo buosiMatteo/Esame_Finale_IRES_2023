@@ -22,6 +22,7 @@ import static com.example.demo.utility.DataConversionUtils.numberToString;
 @Where(clause = "deleted = false")
 public class SalaCinematografica implements Model {
 
+  public static Long NUMERO_MAX_SPETTATORI = 100L;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
