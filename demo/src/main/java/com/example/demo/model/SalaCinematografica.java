@@ -53,4 +53,6 @@ public class SalaCinematografica implements Model {
         .deleted(booleanToString(deleted))
         .build();
   }
+
+
 }

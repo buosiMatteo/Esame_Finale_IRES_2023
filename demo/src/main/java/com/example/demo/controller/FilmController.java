@@ -26,41 +26,39 @@ public class FilmController {
   @Operation(description = """
       This method is used to retrieve all the films from the database<br>
       """)
-  public List<FilmDTO> getAllCustomers() {
+  public List<FilmDTO> getAllFilms() {
     return filmService.findAll().stream().map(Film::toDto).toList();
   }
 
   @PostMapping("/v1")
-  public FilmDTO saveCustomer(@RequestBody FilmDTO filmDTO) {
-    try{
+  public FilmDTO saveFilm (@RequestBody FilmDTO filmDTO) {
+    try {
       Film film = filmDTO.toModel();
       return filmService.insert(film).toDto();
-    }
-    catch(IdMustBeNullException e) {
+    } catch (IdMustBeNullException e) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, e.getMessage());
     }
   }
 
   @PutMapping("/v1")
-  public FilmDTO updateCustomer(@RequestBody FilmDTO filmDTO){
-    try{
+  public FilmDTO updateFilm(@RequestBody FilmDTO filmDTO) {
+    try {
       Film film = filmDTO.toModel();
       return filmService.update(film).toDto();
-    }
-    catch(IdMustNotBeNullException e) {
+    } catch (IdMustNotBeNullException e) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, e.getMessage());
     }
   }
 
   @DeleteMapping("/v1/{id}")
-  public Boolean deleteCustomer(@PathVariable("id") Long idFilm) {
+  public Boolean deleteFilm(@PathVariable("id") Long idFilm) {
     return filmService.deleteById(idFilm);
   }
 
   @GetMapping("/v1/{id}")
-  public FilmDTO getCustomerById(@PathVariable("id") Long idFilm) {
+  public FilmDTO getFilmById(@PathVariable("id") Long idFilm) {
     return filmService.findById(idFilm).toDto();
   }
 }

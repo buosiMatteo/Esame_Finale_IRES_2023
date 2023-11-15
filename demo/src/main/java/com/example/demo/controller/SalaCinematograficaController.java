@@ -26,12 +26,12 @@ public class SalaCinematograficaController {
   @Operation(description = """
       This method is used to retrieve all the rooms from the database<br>
       """)
-  public List<SalaCinematograficaDTO> getAllCustomers() {
+  public List<SalaCinematograficaDTO> getAllRooms() {
     return salaCinematograficaService.findAll().stream().map(SalaCinematografica::toDto).toList();
   }
 
   @PostMapping("/v1")
-  public SalaCinematograficaDTO saveCustomer(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO) {
+  public SalaCinematograficaDTO saveRoom(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO) {
     try{
       SalaCinematografica salaCinematografica = salaCinematograficaDTO.toModel();
       return salaCinematograficaService.insert(salaCinematografica).toDto();
@@ -43,7 +43,7 @@ public class SalaCinematograficaController {
   }
 
   @PutMapping("/v1")
-  public SalaCinematograficaDTO updateCustomer(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO){
+  public SalaCinematograficaDTO updateRoom(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO){
     try{
       SalaCinematografica salaCinematografica = salaCinematograficaDTO.toModel();
       return salaCinematograficaService.update(salaCinematografica).toDto();
@@ -55,12 +55,12 @@ public class SalaCinematograficaController {
   }
 
   @DeleteMapping("/v1/{id}")
-  public Boolean deleteCustomer(@PathVariable("id") Long idSala) {
+  public Boolean deleteRoom(@PathVariable("id") Long idSala) {
     return salaCinematograficaService.deleteById(idSala);
   }
 
   @GetMapping("/v1/{id}")
-  public SalaCinematograficaDTO getCustomerById(@PathVariable("id") Long idSala) {
+  public SalaCinematograficaDTO getRoomById(@PathVariable("id") Long idSala) {
     return salaCinematograficaService.findById(idSala).toDto();
   }
 }

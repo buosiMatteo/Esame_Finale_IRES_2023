@@ -26,12 +26,12 @@ public class SpettatoreController {
   @Operation(description = """
       This method is used to retrieve all the watchers from the database<br>
       """)
-  public List<SpettatoreDTO> getAllCustomers() {
+  public List<SpettatoreDTO> getAllWatcher() {
     return spettatoreService.findAll().stream().map(Spettatore::toDto).toList();
   }
 
   @PostMapping("/v1")
-  public SpettatoreDTO saveCustomer(@RequestBody SpettatoreDTO spettatoreDTO) {
+  public SpettatoreDTO saveWatcher(@RequestBody SpettatoreDTO spettatoreDTO) {
     try{
       Spettatore spettatore = spettatoreDTO.toModel();
       return spettatoreService.insert(spettatore).toDto();
@@ -43,7 +43,7 @@ public class SpettatoreController {
   }
 
   @PutMapping("/v1")
-  public SpettatoreDTO updateCustomer(@RequestBody SpettatoreDTO spettatoreDTO){
+  public SpettatoreDTO updateWatcher(@RequestBody SpettatoreDTO spettatoreDTO){
     try{
       Spettatore spettatore = spettatoreDTO.toModel();
       return spettatoreService.update(spettatore).toDto();
@@ -55,12 +55,12 @@ public class SpettatoreController {
   }
 
   @DeleteMapping("/v1/{id}")
-  public Boolean deleteCustomer(@PathVariable("id") Long idSpettatore) {
+  public Boolean deleteWatcher(@PathVariable("id") Long idSpettatore) {
     return spettatoreService.deleteById(idSpettatore);
   }
 
   @GetMapping("/v1/{id}")
-  public SpettatoreDTO getCustomerById(@PathVariable("id") Long idSpettatore) {
+  public SpettatoreDTO getWatcherById(@PathVariable("id") Long idSpettatore) {
     return spettatoreService.findById(idSpettatore).toDto();
   }
 }

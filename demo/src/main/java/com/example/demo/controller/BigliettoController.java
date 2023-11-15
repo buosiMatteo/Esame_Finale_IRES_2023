@@ -24,12 +24,12 @@ public class BigliettoController {
   @Operation(description = """
       This method is used to retrieve all the tickets from the database<br>
       """)
-  public List<BigliettoDTO> getAllCustomers() {
+  public List<BigliettoDTO> getAllTickets() {
     return bigliettoService.findAll().stream().map(Biglietto::toDto).toList();
   }
 
   @PostMapping("/v1")
-  public BigliettoDTO saveCustomer(@RequestBody BigliettoDTO bigliettoDTO) {
+  public BigliettoDTO saveTicket (@RequestBody BigliettoDTO bigliettoDTO) {
     try{
       Biglietto customer = bigliettoDTO.toModel();
       return bigliettoService.insert(customer).toDto();
@@ -41,7 +41,7 @@ public class BigliettoController {
   }
 
   @PutMapping("/v1")
-  public BigliettoDTO updateCustomer(@RequestBody BigliettoDTO bigliettoDTO){
+  public BigliettoDTO updateTicket (@RequestBody BigliettoDTO bigliettoDTO){
     try{
       Biglietto customer = bigliettoDTO.toModel();
       return bigliettoService.update(customer).toDto();
@@ -53,12 +53,12 @@ public class BigliettoController {
   }
 
   @DeleteMapping("/v1/{id}")
-  public Boolean deleteCustomer(@PathVariable("id") Long idBiglietto) {
+  public Boolean deleteTicket(@PathVariable("id") Long idBiglietto) {
     return bigliettoService.deleteById(idBiglietto);
   }
 
   @GetMapping("/v1/{id}")
-  public BigliettoDTO getCustomerById(@PathVariable("id") Long idBiglietto) {
+  public BigliettoDTO getTicketById(@PathVariable("id") Long idBiglietto) {
     return bigliettoService.findById(idBiglietto).toDto();
   }
 

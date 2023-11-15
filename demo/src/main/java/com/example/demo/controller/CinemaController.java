@@ -28,12 +28,12 @@ public class CinemaController {
   @Operation(description = """
       This method is used to retrieve all the cinemas from the database<br>
       """)
-  public List<CinemaDTO> getAllCustomers() {
+  public List<CinemaDTO> getAllCinemas() {
     return cinemaService.findAll().stream().map(Cinema::toDto).toList();
   }
 
   @PostMapping("/v1")
-  public CinemaDTO saveCustomer(@RequestBody CinemaDTO cinemaDTO) {
+  public CinemaDTO saveCinema (@RequestBody CinemaDTO cinemaDTO) {
     try{
       Cinema cinema = cinemaDTO.toModel();
       return cinemaService.insert(cinema).toDto();
@@ -45,7 +45,7 @@ public class CinemaController {
   }
 
   @PutMapping("/v1")
-  public CinemaDTO updateCustomer(@RequestBody CinemaDTO cinemaDTO){
+  public CinemaDTO updateCinema (@RequestBody CinemaDTO cinemaDTO){
     try{
       Cinema cinema = cinemaDTO.toModel();
       return cinemaService.update(cinema).toDto();
@@ -57,12 +57,12 @@ public class CinemaController {
   }
 
   @DeleteMapping("/v1/{id}")
-  public Boolean deleteCustomer(@PathVariable("id") Long idCinema) {
+  public Boolean deleteCinema(@PathVariable("id") Long idCinema) {
     return cinemaService.deleteById(idCinema);
   }
 
   @GetMapping("/v1/{id}")
-  public CinemaDTO getCustomerById(@PathVariable("id") Long idCInema) {
+  public CinemaDTO getCinemaById(@PathVariable("id") Long idCInema) {
     return cinemaService.findById(idCInema).toDto();
   }
 }
