@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 import static com.example.demo.utility.DataConversionUtils.*;
 
+
 @Builder
 @Getter
 @Setter
@@ -42,12 +43,12 @@ public class Spettatore implements Model {
   Long biglietto;
 
   @Column(name = "maggiorenne")
-  @Builder.Default
-  Boolean maggiorenne = ((LocalDateTime.now().getYear()) - dataNascita.getYear() >= 18) ? true : false;
+ // @Builder.Default
+  Boolean maggiorenne; //= ((LocalDateTime.now().getYear()) - dataNascita.getYear() >= 18) ? true : false;
 
   @Column(name = "eta_spettatore")
-  @Builder.Default
-  Integer etaSpettatore = LocalDateTime.now().getYear() - dataNascita.getYear();
+  //@Builder.Default
+  Integer etaSpettatore; //= LocalDateTime.now().getYear() - dataNascita.getYear();
 
   @Column(name = "deleted")
   @Builder.Default
