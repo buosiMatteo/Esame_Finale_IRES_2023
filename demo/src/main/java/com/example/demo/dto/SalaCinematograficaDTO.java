@@ -38,6 +38,7 @@ public class SalaCinematograficaDTO implements Dto {
         .idFilm(stringToLong(idFilm))
         .film(film)
         .numeroSala(stringToLong(numeroSala))
+        .numeroSpettatori(stringToLong(numeroSpettatori))
         .deleted(stringToBoolean(deleted))
         .build();
   }

@@ -19,8 +19,8 @@ import static com.example.demo.utility.DataConversionUtils.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "contact")
-@SQLDelete(sql = "UPDATE contact SET deleted = true WHERE id = ?")
+@Table(name = "spettatore")
+@SQLDelete(sql = "UPDATE spettatore SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
 public class Spettatore implements Model {
   private int year = LocalDateTime.now().getYear();

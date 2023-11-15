@@ -17,8 +17,8 @@ import static com.example.demo.utility.DataConversionUtils.numberToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "contact")
-@SQLDelete(sql = "UPDATE contact SET deleted = true WHERE id = ?")
+@Table(name = "film")
+@SQLDelete(sql = "UPDATE film SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
 public class Film implements Model {
   @Id

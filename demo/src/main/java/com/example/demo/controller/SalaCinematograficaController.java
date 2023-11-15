@@ -70,9 +70,10 @@ public class SalaCinematograficaController {
     return salaCinematografica.toDto();
   }
 
-  @PutMapping("/v1/empty-room")
+  @PutMapping("/v1/add-person")
   @SneakyThrows
-  public SalaCinematograficaDTO addPerson(@RequestBody SalaCinematografica salaCinematografica) {
+  public SalaCinematograficaDTO addPerson(@RequestBody SalaCinematograficaDTO salaCinematograficaDTO) {
+    SalaCinematografica salaCinematografica = salaCinematograficaDTO.toModel();
     if (salaCinematografica.getNumeroSpettatori() < SalaCinematografica.NUMERO_MAX_SPETTATORI) {
       salaCinematografica.setNumeroSpettatori(salaCinematografica.getNumeroSpettatori() + 1L);
     } else {

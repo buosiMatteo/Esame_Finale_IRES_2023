@@ -37,6 +37,7 @@ public class FilmDTO implements Dto {
   public Film toModel() {
     return Film.builder()
         .id(stringToLong(id))
+        .titolo(titolo)
         .autore(autore)
         .produttore(produttore)
         .genere(genere)
