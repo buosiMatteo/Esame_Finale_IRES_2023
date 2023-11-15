@@ -23,7 +23,6 @@ import static com.example.demo.utility.DataConversionUtils.*;
 @SQLDelete(sql = "UPDATE spettatore SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
 public class Spettatore implements Model {
-  private int year = LocalDateTime.now().getYear();
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
