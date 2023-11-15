@@ -5,9 +5,12 @@ import com.example.demo.exception.IdMustNotBeNullException;
 import com.example.demo.model.Spettatore;
 import com.example.demo.repos.SpettatoreRepository;
 import com.example.demo.service.SpettatoreService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class SpettatoreServiceImpl implements SpettatoreService {
 
   SpettatoreRepository spettatoreRepository;

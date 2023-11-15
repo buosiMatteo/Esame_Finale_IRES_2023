@@ -5,9 +5,12 @@ import com.example.demo.exception.IdMustNotBeNullException;
 import com.example.demo.model.Film;
 import com.example.demo.repos.FilmRepository;
 import com.example.demo.service.FilmService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class FilmServiceImpl implements FilmService {
 
   FilmRepository filmRepository;
