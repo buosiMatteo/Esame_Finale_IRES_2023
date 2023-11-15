@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Matteo Buosi" id="2023-11-15-03-film-create">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="film"/>
+            </not>
+        </preConditions>
+        <comment>film create</comment>
+        <createTable tableName="film">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="titolo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="autore" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="produttore" type="VARCHAR(255)"/>
+            <column name="genere" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="eta_minima" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="durata" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted" type="BOOLEAN"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="film"/>
+        </rollback>
+    </changeSet>
+
+
+
+</databaseChangeLog>

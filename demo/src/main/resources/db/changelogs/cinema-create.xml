@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Matteo Buosi" id="2023-11-15-01-cinema-create">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <tableExists tableName="cinema"/>
+        </not>
+    </preConditions>
+    <comment>cinema create</comment>
+    <createTable tableName="cinema">
+        <column name="id" type="BIGINT(20)" autoIncrement="true">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="nome_cinema" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="numero_sale" type="BIGINT(20)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="address" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="city" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="info_point_email" type="VARCHAR(50)"/>
+        <column name="notes" type="VARCHAR(5000)"/>
+        <column name="deleted" type="BOOLEAN"/>
+    </createTable>
+    <rollback>
+        <dropTable tableName="cinema"/>
+    </rollback>
+</changeSet>
+
+
+
+        </databaseChangeLog>

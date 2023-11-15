@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Matteo Buosi" id="2023-11-15-05-biglietto-create">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="biglietto"/>
+            </not>
+        </preConditions>
+        <comment>biglietto create</comment>
+        <createTable tableName="biglietto">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="numero_sala" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prezzo" type="DECIMAL(8,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted" type="BOOLEAN"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="biglietto"/>
+        </rollback>
+    </changeSet>
+
+
+
+</databaseChangeLog>
