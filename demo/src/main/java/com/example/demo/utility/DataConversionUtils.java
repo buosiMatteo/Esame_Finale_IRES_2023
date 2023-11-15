@@ -19,6 +19,10 @@ public class DataConversionUtils {
     return value == null ? null : Long.parseLong(value);
   }
 
+  public static Double stringToDouble(String value){
+    return value == null ? null : Double.parseDouble(value);
+  }
+
   public static LocalDateTime stringToLocalDateTime(String value){
     return value == null ? null : LocalDateTime.parse(value);
   }

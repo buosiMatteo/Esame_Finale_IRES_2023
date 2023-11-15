@@ -24,29 +24,29 @@ public class Film implements Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  Long id;
+  private Long id;
 
   @Column(name = "titolo")
-  String titolo;
+  private String titolo;
 
   @Column(name = "autore")
-  String autore;
+  private String autore;
 
   @Column(name = "produttore")
-  String produttore;
+  private String produttore;
 
   @Column(name = "genere")
-  String genere;
+  private String genere;
 
   @Column(name = "eta_minima")
-  Long etaMinima;
+  private Long etaMinima;
 
   @Column(name = "durata")
-  Long durata;
+  private Long durata;
 
   @Column(name = "deleted")
   @Builder.Default
-  Boolean deleted = false;
+  private Boolean deleted = false;
 
   @Override
   public FilmDTO toDto() {

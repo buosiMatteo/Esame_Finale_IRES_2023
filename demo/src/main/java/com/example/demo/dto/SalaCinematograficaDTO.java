@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import com.example.demo.dto.archetype.Dto;
 import com.example.demo.dto.archetype.Model;
+import com.example.demo.model.Film;
 import com.example.demo.model.SalaCinematografica;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
@@ -19,23 +20,23 @@ import static com.example.demo.utility.DataConversionUtils.stringToLong;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalaCinematograficaDTO implements Dto {
-  String id;
+  private String id;
 
-  String numeroSpettatori;
+  private String numeroSpettatori;
 
-  String idFilm;
+  private String idFilm;
 
-  String film;
+  private String film;
 
-  String numeroSala;
+  private String numeroSala;
 
-  String deleted;
+  private String deleted;
 
   @Override
   public SalaCinematografica toModel() {
     return SalaCinematografica.builder()
         .id(stringToLong(id))
-        .idFilm(stringToLong(idFilm))
+        .idFilm(Film.builder().build())
         .film(film)
         .numeroSala(stringToLong(numeroSala))
         .numeroSpettatori(stringToLong(numeroSpettatori))

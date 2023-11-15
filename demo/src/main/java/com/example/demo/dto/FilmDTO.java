@@ -17,21 +17,21 @@ import static com.example.demo.utility.DataConversionUtils.stringToLong;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FilmDTO implements Dto {
-  String id;
+  private String id;
 
-  String titolo;
+  private String titolo;
 
-  String autore;
+  private String autore;
 
-  String produttore;
+  private String produttore;
 
-  String genere;
+  private String genere;
 
-  String etaMinima;
+  private String etaMinima;
 
-  String durata;
+  private String durata;
 
-  String deleted;
+  private String deleted;
 
   @Override
   public Film toModel() {

@@ -10,8 +10,7 @@ import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
 
-import static com.example.demo.utility.DataConversionUtils.bigDecimalToString;
-import static com.example.demo.utility.DataConversionUtils.numberToString;
+import static com.example.demo.utility.DataConversionUtils.*;
 
 @Builder
 @Getter
@@ -26,24 +25,25 @@ public class Biglietto implements Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  Long id;
+  private Long id;
 
   @Column(name = "numero_sala")
-  Long numeroSala;
+  private Long numeroSala;
 
   @Column(name = "prezzo")
-  BigDecimal prezzo;
+  private Double prezzo;
 
   @Column(name = "deleted")
   @Builder.Default
-  Boolean deleted = false;
+  private Boolean deleted = false;
 
   @Override
   public BigliettoDTO toDto() {
     return BigliettoDTO.builder()
         .id(numberToString(id))
         .numeroSala(numberToString(numeroSala))
-        .prezzo(bigDecimalToString(prezzo))
+        .prezzo(numberToString(prezzo))
+        .deleted(booleanToString(deleted))
         .build();
   }
 }

@@ -26,29 +26,32 @@ public class SalaCinematografica implements Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  Long id;
+  private Long id;
 
   @Column(name = "numero_spettatori")
-  Long numeroSpettatori;
+  private Long numeroSpettatori;
 
-  Long idFilm;
+  @ManyToOne
+  @MapsId("idFilm")
+  @JoinColumn(name = "id_film")
+  private Film idFilm;
 
   @Column(name = "film")
-  String film;
+  private String film;
 
   @Column(name = "numero_sala")
-  Long numeroSala;
+  private Long numeroSala;
 
   @Column(name = "deleted")
   @Builder.Default
-  Boolean deleted = false;
+  private Boolean deleted = false;
 
   @Override
   public SalaCinematograficaDTO toDto() {
     return SalaCinematograficaDTO.builder()
         .id(numberToString(id))
         .numeroSpettatori(numberToString(numeroSpettatori))
-        .idFilm(numberToString(idFilm))
+        .idFilm(numberToString(idFilm.getId()))
         .film(film)
         .numeroSala(numberToString(numeroSala))
         .deleted(booleanToString(deleted))

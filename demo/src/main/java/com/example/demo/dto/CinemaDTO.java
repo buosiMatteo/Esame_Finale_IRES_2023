@@ -17,21 +17,21 @@ import static com.example.demo.utility.DataConversionUtils.stringToLong;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CinemaDTO implements Dto {
-  String id;
+  private String id;
 
-  String nomeCinema;
+  private String nomeCinema;
 
-  String numeroSale;
+  private String numeroSale;
 
-  String address;
+  private String address;
 
-  String city;
+  private String city;
 
-  String email;
+  private String email;
 
-  String notes;
+  private String notes;
 
-  String deleted;
+  private String deleted;
 
   @Override
   public Cinema toModel() {

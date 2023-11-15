@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import com.example.demo.dto.archetype.Dto;
 import com.example.demo.dto.archetype.Model;
+import com.example.demo.model.Biglietto;
 import com.example.demo.model.Spettatore;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -18,21 +19,21 @@ import static com.example.demo.utility.DataConversionUtils.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpettatoreDTO implements Dto {
-  String id;
+  private String id;
 
-  String nome;
+  private String nome;
 
-  String cognome;
+  private String cognome;
 
-  String dataNascita;
+  private String dataNascita;
 
-  String biglietto;
+  private String idBiglietto;
 
-  String maggiorenne;
+  private String maggiorenne;
 
-  String etaSpettatore;
+  private String etaSpettatore;
 
-  String deleted;
+  private String deleted;
 
   @Override
   public Spettatore toModel() {
@@ -41,7 +42,7 @@ public class SpettatoreDTO implements Dto {
         .nome(nome)
         .cognome(cognome)
         .dataNascita(stringToLocalDateTime(dataNascita))
-        .biglietto(stringToLong(biglietto))
+        .idBiglietto(Biglietto.builder().id(stringToLong(idBiglietto)).build())
         .maggiorenne(stringToBoolean(maggiorenne))
         .etaSpettatore(stringToInteger(etaSpettatore))
         .deleted(stringToBoolean(deleted))

@@ -28,30 +28,32 @@ public class Spettatore implements Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  Long id;
+  private Long id;
 
   @Column(name = "nome")
-  String nome;
+  private String nome;
 
   @Column(name = "cognome")
-  String cognome;
+  private String cognome;
 
   @Column(name = "data_nascita")
-  LocalDateTime dataNascita;
+  private LocalDateTime dataNascita;
 
-  @Column(name = "biglietto")
-  Long biglietto;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @MapsId("idBiglietto")
+  @JoinColumn(name = "id_biglietto")
+  private Biglietto idBiglietto;
 
   @Column(name = "maggiorenne")
-  Boolean maggiorenne;
+  private Boolean maggiorenne;
 
 
   @Column(name = "eta_spettatore")
-  Integer etaSpettatore;
+  private Integer etaSpettatore;
 
   @Column(name = "deleted")
   @Builder.Default
-  Boolean deleted = false;
+  private Boolean deleted = false;
 
   @Override
   public SpettatoreDTO toDto() {
@@ -60,7 +62,7 @@ public class Spettatore implements Model {
         .nome(nome)
         .cognome(cognome)
         .dataNascita(localDateTimeToString(dataNascita))
-        .biglietto(numberToString(biglietto))
+        .idBiglietto(numberToString(idBiglietto.getId()))
         .maggiorenne(booleanToString(maggiorenne))
         .etaSpettatore(numberToString(etaSpettatore))
         .deleted(booleanToString(deleted))

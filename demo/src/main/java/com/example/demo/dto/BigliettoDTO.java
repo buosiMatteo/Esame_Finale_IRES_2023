@@ -21,22 +21,20 @@ import static com.example.demo.utility.DataConversionUtils.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BigliettoDTO implements Dto {
-  String id;
+  private String id;
 
-  @OneToOne
-  @MapsId("numero_sala")
-  String numeroSala;
+  private String numeroSala;
 
-  String prezzo;
+  private String prezzo;
 
-  String deleted;
+  private String deleted;
 
   @Override
   public Biglietto toModel() {
     return Biglietto.builder()
         .id(stringToLong(id))
         .numeroSala(stringToLong(numeroSala))
-        .prezzo(stringToBigDecimal(prezzo))
+        .prezzo(stringToDouble(prezzo))
         .deleted(stringToBoolean(deleted))
         .build();
   }

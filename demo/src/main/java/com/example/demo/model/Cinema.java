@@ -25,29 +25,29 @@ public class Cinema implements Model {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  Long id;
+  private Long id;
 
   @Column(name = "nome_cinema")
-  String nomeCinema;
+  private String nomeCinema;
 
   @Column(name = "numero_sale")
-  Long numeroSale;
+  private Long numeroSale;
 
   @Column(name = "address")
-  String address;
+  private String address;
 
   @Column(name = "city")
-  String city;
+  private String city;
 
   @Column(name = "info_point_email")
-  String email;
+  private String email;
 
   @Column(name = "notes")
-  String notes;
+  private String notes;
 
   @Column(name = "deleted")
   @Builder.Default
-  Boolean deleted = false;
+  private Boolean deleted = false;
 
   @Override
   public CinemaDTO toDto() {
